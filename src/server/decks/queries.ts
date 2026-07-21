@@ -11,6 +11,20 @@ export async function getUserDecks() {
   });
 }
 
+/** Public decks from other users — for the "Explore" section. */
+export async function getPublicDecks(limit = 12) {
+  const user = await requireUser();
+  return db.deck.findMany({
+    where: { isPublic: true, ownerId: { not: user.id } },
+    include: {
+      _count: { select: { cards: true } },
+      owner: { select: { name: true } },
+    },
+    orderBy: { createdAt: "desc" },
+    take: limit,
+  });
+}
+
 /** A single deck with its cards — only if the user owns it or it's public. */
 export async function getDeckWithCards(deckId: string) {
   const user = await requireUser();

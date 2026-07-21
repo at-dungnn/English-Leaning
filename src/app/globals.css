@@ -48,75 +48,74 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Palette: Language-learning indigo (#4F46E5) + progress green accents.
-   Source: ui-ux-pro-max "Language Learning App" palette. */
+/* Palette: Linear / Vercel style — neutral gray base, single indigo accent (#4F46E5). */
 :root {
-  --background: #fbfbfe;
-  --foreground: #1e1b3a;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
   --card: #ffffff;
-  --card-foreground: #1e1b3a;
+  --card-foreground: #0a0a0a;
   --popover: #ffffff;
-  --popover-foreground: #1e1b3a;
+  --popover-foreground: #0a0a0a;
   --primary: #4f46e5;
   --primary-foreground: #ffffff;
-  --secondary: #eef2ff;
-  --secondary-foreground: #4338ca;
-  --muted: #f2f3fb;
-  --muted-foreground: #6b7280;
-  --accent: #eef2ff;
-  --accent-foreground: #4338ca;
-  --destructive: #dc2626;
-  --border: #e6e8f5;
-  --input: #e6e8f5;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #171717;
+  --muted: #f4f4f5;
+  --muted-foreground: #737373;
+  --accent: #f4f4f5;
+  --accent-foreground: #171717;
+  --destructive: #e5484d;
+  --border: #e8e8ec;
+  --input: #e8e8ec;
   --ring: #4f46e5;
   --chart-1: #4f46e5;
-  --chart-2: #16a34a;
-  --chart-3: #ea580c;
-  --chart-4: #7c3aed;
-  --chart-5: #2563eb;
+  --chart-2: #6366f1;
+  --chart-3: #818cf8;
+  --chart-4: #a5b4fc;
+  --chart-5: #c7d2fe;
   --radius: 0.75rem;
-  --sidebar: #f5f6fd;
-  --sidebar-foreground: #1e1b3a;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0a0a0a;
   --sidebar-primary: #4f46e5;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eef2ff;
-  --sidebar-accent-foreground: #4338ca;
-  --sidebar-border: #e6e8f5;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #171717;
+  --sidebar-border: #e8e8ec;
   --sidebar-ring: #4f46e5;
 }
 
 .dark {
-  --background: #0e0d1c;
-  --foreground: #e8e8f6;
-  --card: #191830;
-  --card-foreground: #e8e8f6;
-  --popover: #191830;
-  --popover-foreground: #e8e8f6;
-  --primary: #818cf8;
-  --primary-foreground: #17162e;
-  --secondary: #26244a;
-  --secondary-foreground: #e8e8f6;
-  --muted: #26244a;
-  --muted-foreground: #a6a4c4;
-  --accent: #26244a;
-  --accent-foreground: #e8e8f6;
-  --destructive: #f87171;
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: #818cf8;
-  --chart-1: #818cf8;
-  --chart-2: #4ade80;
-  --chart-3: #fb923c;
-  --chart-4: #a78bfa;
-  --chart-5: #60a5fa;
-  --sidebar: #191830;
-  --sidebar-foreground: #e8e8f6;
-  --sidebar-primary: #818cf8;
-  --sidebar-primary-foreground: #17162e;
-  --sidebar-accent: #26244a;
-  --sidebar-accent-foreground: #e8e8f6;
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #818cf8;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #111112;
+  --card-foreground: #fafafa;
+  --popover: #111112;
+  --popover-foreground: #fafafa;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #1c1c1f;
+  --secondary-foreground: #fafafa;
+  --muted: #1c1c1f;
+  --muted-foreground: #a1a1aa;
+  --accent: #1c1c1f;
+  --accent-foreground: #fafafa;
+  --destructive: #f2555a;
+  --border: #26262a;
+  --input: #2a2a2e;
+  --ring: #6366f1;
+  --chart-1: #6366f1;
+  --chart-2: #818cf8;
+  --chart-3: #a5b4fc;
+  --chart-4: #4f46e5;
+  --chart-5: #c7d2fe;
+  --sidebar: #111112;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1c1c1f;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #26262a;
+  --sidebar-ring: #6366f1;
 }
 
 @layer base {

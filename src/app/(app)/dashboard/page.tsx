@@ -20,46 +20,33 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8">
-      {/* Welcome banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 to-emerald-600 p-6 text-white shadow-lg sm:p-8">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-white/10"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -bottom-12 right-16 size-32 rounded-full bg-white/10"
-        />
-        <div className="relative flex items-start justify-between gap-4">
-          <div>
-            <div className="text-sm text-white/80">Chào mừng trở lại 👋</div>
-            <h1 className="text-2xl font-bold sm:text-3xl">{name}</h1>
-            <p className="mt-1 text-white/90">
-              🔥 {game.currentStreak} ngày streak · ⭐ {game.points} điểm
-            </p>
+      {/* Welcome header */}
+      <div className="flex flex-col gap-4 rounded-2xl border bg-card p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-1">
+          <span className="text-sm text-muted-foreground">Chào mừng trở lại</span>
+          <h1 className="text-2xl font-bold tracking-tight">{name}</h1>
+          <div className="mt-1 flex items-center gap-4 text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5">
+              <Flame className="size-4 text-primary" /> {game.currentStreak} ngày
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Star className="size-4 text-primary" /> {game.points} điểm
+            </span>
           </div>
+        </div>
+        <div className="flex gap-2">
+          <Button render={<Link href="/decks" />}>Học ngay</Button>
           <form action={logout}>
-            <Button type="submit" variant="secondary" size="sm">
+            <Button type="submit" variant="outline">
               Đăng xuất
             </Button>
           </form>
-        </div>
-        <div className="relative mt-5 flex flex-wrap gap-2">
-          <Button
-            render={<Link href="/decks" />}
-            className="bg-white text-indigo-700 hover:bg-white/90"
-          >
-            Học ngay
-          </Button>
-          <Button render={<Link href="/materials" />} variant="secondary">
-            Tài liệu học
-          </Button>
         </div>
       </div>
 
       {/* Stats */}
       <div className="grid gap-4 sm:grid-cols-3">
-        <Stat label="Chuỗi ngày" value={`${game.currentStreak} 🔥`} icon={<Flame />} highlight />
+        <Stat label="Chuỗi ngày" value={game.currentStreak} icon={<Flame />} accent />
         <Stat label="Điểm" value={game.points} icon={<Star />} />
         <Stat label="Cần ôn hôm nay" value={stats.dueCount} icon={<Clock />} />
         <Stat label="Bộ thẻ" value={stats.deckCount} icon={<Library />} />
@@ -76,30 +63,24 @@ function Stat({
   label,
   value,
   icon,
-  highlight,
+  accent,
 }: {
   label: string;
   value: number | string;
   icon: React.ReactNode;
-  highlight?: boolean;
+  accent?: boolean;
 }) {
   return (
-    <div
-      className={`flex items-center gap-4 rounded-2xl border p-5 ${
-        highlight ? "border-primary/30 bg-primary/5" : "bg-card"
-      }`}
-    >
+    <div className="flex items-center gap-4 rounded-2xl border bg-card p-5 shadow-sm transition-colors hover:border-primary/30">
       <div
         className={`flex size-11 items-center justify-center rounded-xl [&_svg]:size-5 ${
-          highlight
-            ? "bg-primary text-primary-foreground"
-            : "bg-primary/10 text-primary"
+          accent ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"
         }`}
       >
         {icon}
       </div>
       <div>
-        <div className="text-3xl font-bold leading-none">{value}</div>
+        <div className="text-3xl font-bold leading-none tracking-tight">{value}</div>
         <div className="mt-1 text-sm text-muted-foreground">{label}</div>
       </div>
     </div>
