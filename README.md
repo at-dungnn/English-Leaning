@@ -1,6 +1,6 @@
 # English Learning
 
-🌐 **Live:** https://english-leaning.vercel.app
+🌐 **Live:** https://learn-english-vn.vercel.app
 
 Web app học từ vựng tiếng Anh cho người Việt (flashcard, ôn tập giãn cách SRS, TOEIC/IELTS).
 Xem `CLAUDE.md` để biết tech stack, quy ước và lộ trình phát triển.
