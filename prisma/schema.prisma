@@ -26,11 +26,18 @@ model User {
   hashedPassword String? // null for social-only accounts
   role           Role      @default(USER)
 
-  accounts  Account[]
-  sessions  Session[]
-  decks     Deck[]
-  reviews   Review[]
-  materials Material[]
+  // Gamification (Phase 5)
+  points        Int       @default(0)
+  currentStreak Int       @default(0)
+  longestStreak Int       @default(0)
+  lastStudyDate DateTime? // date-only (UTC midnight) of last study day
+
+  accounts   Account[]
+  sessions   Session[]
+  decks      Deck[]
+  reviews    Review[]
+  materials  Material[]
+  activities DailyActivity[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -167,4 +174,16 @@ model Material {
 
   @@index([type, level])
   @@index([isPublished])
+}
+
+// Per-user daily review counts (Phase 5 — streaks & progress chart).
+model DailyActivity {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date        DateTime @db.Date
+  reviewCount Int      @default(0)
+
+  @@unique([userId, date])
+  @@index([userId, date])
 }

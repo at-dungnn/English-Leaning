@@ -36,6 +36,7 @@ export const config = {
     "/decks/:path*",
     "/study/:path*",
     "/materials/:path*",
+    "/leaderboard/:path*",
     "/admin/:path*",
   ],
 };
