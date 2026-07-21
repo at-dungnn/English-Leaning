@@ -13,8 +13,14 @@ export const authConfig = {
     signIn: "/login",
   },
   providers: [
-    ...(process.env.AUTH_GOOGLE_ID ? [Google] : []),
-    ...(process.env.AUTH_FACEBOOK_ID ? [Facebook] : []),
+    // allowDangerousEmailAccountLinking: link social login to an existing
+    // account with the same email. Safe here because Google/Facebook verify emails.
+    ...(process.env.AUTH_GOOGLE_ID
+      ? [Google({ allowDangerousEmailAccountLinking: true })]
+      : []),
+    ...(process.env.AUTH_FACEBOOK_ID
+      ? [Facebook({ allowDangerousEmailAccountLinking: true })]
+      : []),
   ],
   callbacks: {
     jwt({ token, user }) {
