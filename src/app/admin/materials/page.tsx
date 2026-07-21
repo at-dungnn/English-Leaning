@@ -24,11 +24,12 @@ export default async function AdminMaterialsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold tracking-tight">
-        Tài liệu ({materials.length})
-      </h1>
+      <div>
+        <h1 className="text-2xl font-bold tracking-tight">Tài liệu</h1>
+        <p className="text-sm text-muted-foreground">{materials.length} tài liệu</p>
+      </div>
 
-      <Card>
+      <Card className="shadow-sm">
         <CardHeader>
           <CardTitle className="text-base">Tạo tài liệu mới</CardTitle>
         </CardHeader>
@@ -38,52 +39,64 @@ export default async function AdminMaterialsPage() {
       </Card>
 
       {materials.length > 0 && (
-        <div className="flex flex-col divide-y rounded-lg border">
-          {materials.map((m) => (
-            <div
-              key={m.id}
-              className="flex flex-wrap items-center justify-between gap-3 p-4"
-            >
-              <div>
-                <div className="font-medium">{m.title}</div>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  <Badge variant="secondary">
-                    {MATERIAL_TYPE_LABELS[m.type as MaterialTypeValue]}
-                  </Badge>
-                  <Badge variant="secondary">
-                    {LEVEL_LABELS[m.level as LevelValue]}
-                  </Badge>
-                  <Badge variant={m.isPublished ? "default" : "outline"}>
-                    {m.isPublished ? "Đã xuất bản" : "Nháp"}
-                  </Badge>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button
-                  render={<Link href={`/admin/materials/${m.id}`} />}
-                  size="sm"
-                  variant="outline"
-                >
-                  Sửa
-                </Button>
-                <form action={toggleMaterialPublish.bind(null, m.id)}>
-                  <Button type="submit" size="sm" variant="outline">
-                    {m.isPublished ? "Ẩn" : "Xuất bản"}
-                  </Button>
-                </form>
-                <form action={deleteMaterial.bind(null, m.id)}>
-                  <Button
-                    type="submit"
-                    size="sm"
-                    variant="ghost"
-                    className="text-destructive"
-                  >
-                    Xoá
-                  </Button>
-                </form>
-              </div>
-            </div>
-          ))}
+        <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-3 font-medium">Tiêu đề</th>
+                  <th className="px-4 py-3 font-medium">Loại</th>
+                  <th className="px-4 py-3 font-medium">Trình độ</th>
+                  <th className="px-4 py-3 font-medium">Trạng thái</th>
+                  <th className="px-4 py-3 text-right font-medium">Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                {materials.map((m) => (
+                  <tr key={m.id} className="border-t transition-colors hover:bg-muted/40">
+                    <td className="px-4 py-3 font-medium">{m.title}</td>
+                    <td className="px-4 py-3 text-muted-foreground">
+                      {MATERIAL_TYPE_LABELS[m.type as MaterialTypeValue]}
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">
+                      {LEVEL_LABELS[m.level as LevelValue]}
+                    </td>
+                    <td className="px-4 py-3">
+                      <Badge variant={m.isPublished ? "default" : "secondary"}>
+                        {m.isPublished ? "Đã xuất bản" : "Nháp"}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex justify-end gap-2">
+                        <Button
+                          render={<Link href={`/admin/materials/${m.id}`} />}
+                          size="sm"
+                          variant="outline"
+                        >
+                          Sửa
+                        </Button>
+                        <form action={toggleMaterialPublish.bind(null, m.id)}>
+                          <Button type="submit" size="sm" variant="outline">
+                            {m.isPublished ? "Ẩn" : "Xuất bản"}
+                          </Button>
+                        </form>
+                        <form action={deleteMaterial.bind(null, m.id)}>
+                          <Button
+                            type="submit"
+                            size="sm"
+                            variant="ghost"
+                            className="text-destructive"
+                          >
+                            Xoá
+                          </Button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

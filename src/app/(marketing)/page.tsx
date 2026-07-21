@@ -35,7 +35,7 @@ export default function HomePage() {
             </span>
             <h1 className="text-balance text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
               Nhớ từ vựng tiếng Anh{" "}
-              <span className="bg-gradient-to-r from-indigo-500 to-emerald-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-indigo-600 to-indigo-400 bg-clip-text text-transparent">
                 lâu gấp 3 lần
               </span>
             </h1>
@@ -106,19 +106,19 @@ export default function HomePage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-3">
           <Feature
             icon={<BookOpen className="size-6" />}
-            color="bg-indigo-500/10 text-indigo-600"
+            color="bg-primary/10 text-primary"
             title="Flashcard trực quan"
             desc="Thẻ có phiên âm, nghĩa, ví dụ và hình ảnh — nhớ nhanh, nhớ sâu."
           />
           <Feature
             icon={<Brain className="size-6" />}
-            color="bg-emerald-500/10 text-emerald-600"
+            color="bg-primary/10 text-primary"
             title="Ôn tập giãn cách (SRS)"
             desc="Thuật toán SM-2 nhắc ôn đúng lúc sắp quên để tối ưu trí nhớ."
           />
           <Feature
             icon={<Trophy className="size-6" />}
-            color="bg-orange-500/10 text-orange-600"
+            color="bg-primary/10 text-primary"
             title="Tạo động lực"
             desc="Chuỗi ngày học, điểm số và bảng xếp hạng giữ bạn học đều mỗi ngày."
           />
@@ -127,7 +127,7 @@ export default function HomePage() {
 
       {/* CTA band */}
       <section className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-600 to-emerald-600 px-6 py-12 text-center text-white sm:px-10 sm:py-16">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 to-indigo-500 px-6 py-12 text-center text-white sm:px-10 sm:py-16">
           <h2 className="text-2xl font-bold sm:text-3xl">
             Sẵn sàng chinh phục từ vựng?
           </h2>

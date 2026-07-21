@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { requireAdmin } from "@/lib/session";
+import { LogoMark } from "@/components/logo";
+import { AdminNav } from "@/components/admin-nav";
 
 export default async function AdminLayout({
   children,
@@ -9,28 +10,19 @@ export default async function AdminLayout({
   await requireAdmin(); // defense-in-depth (proxy already gates /admin)
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-6 py-8">
-      <header className="flex flex-wrap items-center gap-x-5 gap-y-2 border-b pb-4">
-        <span className="font-bold">🛠️ Admin · English Learning</span>
-        <nav className="flex gap-4 text-sm text-muted-foreground">
-          <Link href="/admin" className="hover:text-foreground">
-            Tổng quan
-          </Link>
-          <Link href="/admin/users" className="hover:text-foreground">
-            Người dùng
-          </Link>
-          <Link href="/admin/decks" className="hover:text-foreground">
-            Bộ thẻ
-          </Link>
-          <Link href="/admin/materials" className="hover:text-foreground">
-            Tài liệu
-          </Link>
-          <Link href="/dashboard" className="hover:text-foreground">
-            ← Về app
-          </Link>
-        </nav>
+    <div className="flex flex-1 flex-col">
+      <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-3 sm:px-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-2 font-heading font-bold">
+            <LogoMark className="size-7" />
+            Admin
+          </div>
+          <AdminNav />
+        </div>
       </header>
-      {children}
+      <div className="mx-auto w-full max-w-5xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
+        {children}
+      </div>
     </div>
   );
 }
