@@ -9,6 +9,7 @@ import {
   type LevelValue,
   type MaterialTypeValue,
 } from "@/lib/materials";
+import { TYPE_META } from "@/components/materials/type-meta";
 import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = { title: "Tài liệu học" };
@@ -39,15 +40,12 @@ export default async function MaterialsPage({
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-6 py-10">
-      <div className="flex items-center justify-between">
+    <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10">
+      <div>
         <h1 className="text-2xl font-bold tracking-tight">Tài liệu học</h1>
-        <Link
-          href="/dashboard"
-          className="text-sm text-muted-foreground hover:underline"
-        >
-          ← Dashboard
-        </Link>
+        <p className="text-sm text-muted-foreground">
+          Bài đọc, ngữ pháp, TOEIC &amp; IELTS theo cấp độ.
+        </p>
       </div>
 
       {/* Filters */}
@@ -67,11 +65,7 @@ export default async function MaterialsPage({
             Tất cả
           </FilterChip>
           {LEVELS.map((l) => (
-            <FilterChip
-              key={l}
-              href={buildHref({ level: l })}
-              active={level === l}
-            >
+            <FilterChip key={l} href={buildHref({ level: l })} active={level === l}>
               {LEVEL_LABELS[l]}
             </FilterChip>
           ))}
@@ -79,29 +73,42 @@ export default async function MaterialsPage({
       </div>
 
       {materials.length === 0 ? (
-        <p className="rounded-xl border border-dashed p-10 text-center text-muted-foreground">
+        <p className="rounded-2xl border border-dashed p-12 text-center text-muted-foreground">
           Chưa có tài liệu nào phù hợp.
         </p>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2">
-          {materials.map((m) => (
-            <Link
-              key={m.id}
-              href={`/materials/${m.id}`}
-              className="flex flex-col gap-2 rounded-xl border p-5 transition-colors hover:bg-muted/50"
-            >
-              <div className="flex gap-2">
-                <Badge>{MATERIAL_TYPE_LABELS[m.type]}</Badge>
-                <Badge variant="secondary">{LEVEL_LABELS[m.level]}</Badge>
-              </div>
-              <h2 className="font-semibold">{m.title}</h2>
-              {m.summary && (
-                <p className="line-clamp-2 text-sm text-muted-foreground">
-                  {m.summary}
-                </p>
-              )}
-            </Link>
-          ))}
+          {materials.map((m) => {
+            const meta = TYPE_META[m.type as MaterialTypeValue];
+            const Icon = meta.icon;
+            return (
+              <Link
+                key={m.id}
+                href={`/materials/${m.id}`}
+                className="flex flex-col gap-3 rounded-2xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md"
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`flex size-10 items-center justify-center rounded-xl ${meta.className}`}
+                  >
+                    <Icon className="size-5" />
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    <Badge variant="secondary">{meta.label}</Badge>
+                    <Badge variant="outline">
+                      {LEVEL_LABELS[m.level as LevelValue]}
+                    </Badge>
+                  </div>
+                </div>
+                <h2 className="font-semibold leading-snug">{m.title}</h2>
+                {m.summary && (
+                  <p className="line-clamp-2 text-sm text-muted-foreground">
+                    {m.summary}
+                  </p>
+                )}
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>
@@ -117,7 +124,7 @@ function FilterRow({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="w-16 text-sm text-muted-foreground">{label}</span>
+      <span className="w-16 shrink-0 text-sm text-muted-foreground">{label}</span>
       {children}
     </div>
   );
