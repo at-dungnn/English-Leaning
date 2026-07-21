@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Plus_Jakarta_Sans } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 // Body: clean, readable (full Vietnamese support).
@@ -36,7 +37,10 @@ export default function RootLayout({
       lang="vi"
       className={`${jakarta.variable} ${beVietnam.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {children}
+        <Toaster position="top-center" richColors />
+      </body>
     </html>
   );
 }

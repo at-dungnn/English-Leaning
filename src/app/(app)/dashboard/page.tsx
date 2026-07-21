@@ -19,18 +19,45 @@ export default async function DashboardPage() {
   ]);
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8 px-6 py-12">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight">
-          Xin chào, {name} 👋
-        </h1>
-        <form action={logout}>
-          <Button type="submit" variant="outline">
-            Đăng xuất
+    <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8">
+      {/* Welcome banner */}
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 to-emerald-600 p-6 text-white shadow-lg sm:p-8">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-white/10"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-12 right-16 size-32 rounded-full bg-white/10"
+        />
+        <div className="relative flex items-start justify-between gap-4">
+          <div>
+            <div className="text-sm text-white/80">Chào mừng trở lại 👋</div>
+            <h1 className="text-2xl font-bold sm:text-3xl">{name}</h1>
+            <p className="mt-1 text-white/90">
+              🔥 {game.currentStreak} ngày streak · ⭐ {game.points} điểm
+            </p>
+          </div>
+          <form action={logout}>
+            <Button type="submit" variant="secondary" size="sm">
+              Đăng xuất
+            </Button>
+          </form>
+        </div>
+        <div className="relative mt-5 flex flex-wrap gap-2">
+          <Button
+            render={<Link href="/decks" />}
+            className="bg-white text-indigo-700 hover:bg-white/90"
+          >
+            Học ngay
           </Button>
-        </form>
+          <Button render={<Link href="/materials" />} variant="secondary">
+            Tài liệu học
+          </Button>
+        </div>
       </div>
 
+      {/* Stats */}
       <div className="grid gap-4 sm:grid-cols-3">
         <Stat label="Chuỗi ngày" value={`${game.currentStreak} 🔥`} icon={<Flame />} highlight />
         <Stat label="Điểm" value={game.points} icon={<Star />} />
@@ -41,16 +68,6 @@ export default async function DashboardPage() {
       </div>
 
       <ActivityChart series={game.series} />
-
-      <div className="flex flex-wrap gap-3">
-        <Button render={<Link href="/decks" />}>Bộ thẻ của tôi</Button>
-        <Button render={<Link href="/materials" />} variant="outline">
-          Tài liệu học
-        </Button>
-        <Button render={<Link href="/leaderboard" />} variant="outline">
-          🏆 Bảng xếp hạng
-        </Button>
-      </div>
     </div>
   );
 }

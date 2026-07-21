@@ -6,7 +6,7 @@ import { db } from "@/lib/db";
 import { requireUser } from "@/lib/session";
 import { cardSchema, deckSchema } from "./schemas";
 
-export type DeckActionState = { error?: string } | undefined;
+export type DeckActionState = { error?: string; ok?: boolean } | undefined;
 
 export async function createDeck(
   _prev: DeckActionState,
@@ -48,7 +48,7 @@ export async function addCard(
   }
   await db.card.create({ data: { ...parsed.data, deckId } });
   revalidatePath(`/decks/${deckId}`);
-  return undefined;
+  return { ok: true };
 }
 
 export async function deleteCard(cardId: string) {

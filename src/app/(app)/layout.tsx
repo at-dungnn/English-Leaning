@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
+import { DesktopNav, BottomNav } from "@/components/app-nav";
 
 export default function AppLayout({
   children,
@@ -13,9 +14,11 @@ export default function AppLayout({
           <Link href="/dashboard">
             <Logo />
           </Link>
+          <DesktopNav />
         </div>
       </header>
-      {children}
+      <div className="flex flex-1 flex-col pb-20 sm:pb-0">{children}</div>
+      <BottomNav />
     </div>
   );
 }

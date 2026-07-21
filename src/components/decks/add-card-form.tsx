@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
+import { toast } from "sonner";
 import { addCard } from "@/server/decks/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,10 @@ export function AddCardForm({ deckId }: { deckId: string }) {
     addCard.bind(null, deckId),
     undefined,
   );
+
+  useEffect(() => {
+    if (state?.ok) toast.success("Đã thêm thẻ mới 🎉");
+  }, [state]);
 
   return (
     <form action={action} className="flex flex-col gap-3">

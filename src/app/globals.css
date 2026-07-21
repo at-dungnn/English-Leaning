@@ -135,4 +135,10 @@
     font-family: var(--font-heading);
     letter-spacing: -0.02em;
   }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  label:has(> input[type="checkbox"]),
+  a[href] {
+    cursor: pointer;
+  }
 }
