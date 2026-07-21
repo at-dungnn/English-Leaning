@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/logo";
 
 export default function AuthLayout({
   children,
@@ -7,8 +8,8 @@ export default function AuthLayout({
 }) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-      <Link href="/" className="mb-6 text-xl font-bold tracking-tight">
-        English<span className="text-primary">Leaning</span>
+      <Link href="/" className="mb-6">
+        <Logo />
       </Link>
       {children}
     </div>
