@@ -19,8 +19,8 @@ const beVietnam = Be_Vietnam_Pro({
 
 export const metadata: Metadata = {
   title: {
-    default: "EnglishLeaning — Học từ vựng tiếng Anh thông minh",
-    template: "%s | EnglishLeaning",
+    default: "English Learning — Học từ vựng tiếng Anh thông minh",
+    template: "%s | English Learning",
   },
   description:
     "Nền tảng học từ vựng tiếng Anh cho người Việt: flashcard, ôn tập giãn cách (SRS), luyện TOEIC & IELTS.",

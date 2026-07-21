@@ -1,4 +1,4 @@
-# EnglishLeaning
+# English Learning
 
 🌐 **Live:** https://english-leaning.vercel.app
 

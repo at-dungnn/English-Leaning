@@ -11,7 +11,7 @@ export default async function AdminLayout({
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-6 py-8">
       <header className="flex flex-wrap items-center gap-x-5 gap-y-2 border-b pb-4">
-        <span className="font-bold">🛠️ Admin · EnglishLeaning</span>
+        <span className="font-bold">🛠️ Admin · English Learning</span>
         <nav className="flex gap-4 text-sm text-muted-foreground">
           <Link href="/admin" className="hover:text-foreground">
             Tổng quan

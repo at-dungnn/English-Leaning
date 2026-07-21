@@ -7,7 +7,7 @@ export function LogoMark({ className }: { className?: string }) {
       viewBox="0 0 40 40"
       className={cn("size-8", className)}
       role="img"
-      aria-label="EnglishLeaning"
+      aria-label="English Learning"
     >
       <defs>
         <linearGradient id="el-logo" x1="0" y1="0" x2="1" y2="1">
@@ -46,7 +46,7 @@ export function Logo({ className }: { className?: string }) {
     >
       <LogoMark />
       <span>
-        English<span className="text-primary">Leaning</span>
+        English <span className="text-primary">Learning</span>
       </span>
     </span>
   );

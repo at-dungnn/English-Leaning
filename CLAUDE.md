@@ -1,4 +1,4 @@
-# EnglishLeaning — Project Rules & Guide
+# English Learning — Project Rules & Guide
 
 > An AI-assisted English vocabulary learning web app for Vietnamese learners (TOEIC / IELTS / conversation).
 > Inspired by heywordvocab.com. Built with Next.js + TypeScript + Prisma.
@@ -116,4 +116,4 @@ prisma/
 
 ---
 
-_Keep this file updated as the project evolves. It is the source of truth for how we build EnglishLeaning._
+_Keep this file updated as the project evolves. It is the source of truth for how we build English Learning._
