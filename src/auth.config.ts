@@ -7,6 +7,8 @@ import type { Role } from "@/generated/prisma/enums";
 // The Credentials provider + Prisma adapter live in src/lib/auth.ts.
 // Social providers are only enabled when their env keys are present.
 export const authConfig = {
+  // Trust the deployment host (Vercel) so redirects use the real domain, not localhost.
+  trustHost: true,
   pages: {
     signIn: "/login",
   },

@@ -9,21 +9,23 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth;
   const role = req.auth?.user?.role;
 
+  // Redirect preserving the real request host (works behind Vercel's proxy).
+  const redirectTo = (path: string) => {
+    const url = nextUrl.clone();
+    url.pathname = path;
+    url.search = "";
+    return NextResponse.redirect(url);
+  };
+
   // Admin area: must be logged in AND be an ADMIN.
   if (nextUrl.pathname.startsWith("/admin")) {
-    if (!isLoggedIn) {
-      return NextResponse.redirect(new URL("/login", nextUrl));
-    }
-    if (role !== "ADMIN") {
-      return NextResponse.redirect(new URL("/dashboard", nextUrl));
-    }
+    if (!isLoggedIn) return redirectTo("/login");
+    if (role !== "ADMIN") return redirectTo("/dashboard");
     return NextResponse.next();
   }
 
   // Learner area: must be logged in.
-  if (!isLoggedIn) {
-    return NextResponse.redirect(new URL("/login", nextUrl));
-  }
+  if (!isLoggedIn) return redirectTo("/login");
 
   return NextResponse.next();
 });
